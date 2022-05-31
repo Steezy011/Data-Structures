@@ -17,7 +17,7 @@ void main(){
 	header = NULL;
 	while(1){
 		printf("\n1.Insertion\n2.Deletion\n3.Search\n4.Traverse");
-		printf("Enter your choice");
+		printf("\nEnter your choice:");
 		scanf("%d", &ch);
 		switch(ch){
 			case 1:insertion();
@@ -114,15 +114,15 @@ void search(){
 	scanf("%d", &item);
 	for(ptr=header; ptr!= NULL; ptr=ptr->link){
 		loc++;
-		if(ptr->data=item){
+		if(ptr->data==item){
 			f=1;
-			break;
+//			break;
 		}
-		if(f=0)
+		if(f==0)
 		printf("\n Element not found");
 		else
 		printf("\n The element found at location %d", loc);
-		
+	
 	}//for
 }//search
 
@@ -135,4 +135,3 @@ void traverse(){
 		printf("%d",ptr->data);
 	}
 }//traverse
-
