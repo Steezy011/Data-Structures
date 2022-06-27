@@ -28,7 +28,7 @@ void main()  {
 
 void insertion()  
 {
-	 ptr=header;
+	ptr=header;
 	new=malloc(sizeof(struct node));
 	printf("\nEnter the item to be inserted: ");
 	scanf("%d",&item);
@@ -134,15 +134,14 @@ void traverse()
 		printf("\n\nThe elements in farword order: ");
 		for(;ptr!=NULL;ptr=ptr->next)
 		{
-			printf("%d",ptr->data);
+			printf("%4d",ptr->data);
 			  ptr1=ptr;
 		}
 		printf("\n\nThe elements in reverse order: ");
 		for(;ptr1!=NULL;ptr1=ptr1->prev)
-			printf("%d",ptr1->data);
+			printf("%4d",ptr1->data);
 	}//else
 }//traverse
-
 
 
 
