@@ -1,84 +1,70 @@
-#include<stdio.h>  
-#include<stdlib.h>  
-#define size 5
-void  insert();
-void  delete();
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 5
+
+void enq();
+void dq();
 void display();
-int cq[size], front = -1, rear = -1;
+
+int cq[SIZE], front=-1, rear=-1, i , item, op;
 
 void main(){
-
-	int ch;
 	while(1){
-		printf("\n1.Insert\n 2.Delete\n 3.Display\n 4.Quit\n");
-		printf("Enter your choice : ");
-		scanf("%d",&ch);
-		switch(ch){
-			case 1 :insert();
-				break;
-			case 2 :delete();
-				break;
-			case 3:	display();
-				break;
-			case 4:	exit(0);
-			default:printf("Wrong choice\n");
-		}//switch
-	}//while
-}//main
-void insert()
-{
-	int item;
-	if(front == (rear+1)%size)
-	{
-		printf("Queue Overflow \n");
-		
+		printf("1.Insertion\n 2.Deletion \n 3.Display\n 4.Exit\n");
+		printf("Choose any option: ");
+		scanf("%d", &op);
+		switch(op){
+			case 1: enq(item);
+			break;
+			case 2: dq();
+			break;
+			case 3: display();
+			break;
+			case 4: exit(0);
+			default: printf("Wrong Choice\n");
+		}
 	}
-	else
-    {
-		printf("Input the element for insertion in queue : ");
+}
+
+void enq(int item){
+	if((rear+1)%SIZE == front)
+	printf("Queue Overflow\n");
+	
+	else if(front==-1 && rear==-1){
+		front = rear= 0;
+		printf("Enter an element to insert: ");
 		scanf("%d", &item);
-		rear=(rear+1)%size;    //Circular Incrementation
-		cq[rear] = item ;
+		cq[rear] = item;
 	}
-    if(front==-1)
-        front++;
-}//insert
-void delete()
-{
-	int ele;
-	if (front == -1)
-	{
-		printf("Queue Underflow\n");
+	else{
+		printf("Enter an element to insert: ");
+		scanf("%d", &item);
+		rear = (rear+1)%SIZE;
+		cq[rear] = item;
 	}
-      else
-      {
-        	ele=cq[front];
- 	   		printf("Element deleted from queue is : %d\n",ele);
-         	if(front==rear)
-         	{
-            		front=-1;
-            		rear=-1;
-          	}
-          	else
-          	front=(front+1)%size;
-     }  
+}
 
-}//delete
-void display()
-{
-	int i;
-    if(front==-1){
-    printf("queue is empty");
-	}	
-   else{
-    printf("\n queue elements are:");
-	for (i=front ; i!=rear ; i=(i+1)%size)
-		printf("%4d",cq[i]);
+void dq(){
+	if(front==-1 && rear==-1)
+	printf("Queue Underflow");
+	else if(front == rear){
+		printf("The deleted item from Queue is %d\n", cq[front]);
+		front = rear = -1;
 	}
-	printf("%4d",cq[i]);
-}//display
+	else{
+		printf("The deleted item from Queue is %d\n", cq[front]);
+		front = (front+1)%SIZE;
+	}
+}
 
-
-
-
-
+void display(){
+	if(front==-1 && rear==-1)
+	printf("Queue Underflow\n");
+	else{	
+		printf("The elements in stack are: ");
+		for(i=front; i<=rear; i++){
+			printf("%4d", cq[i]);
+		}
+		printf("\n");
+	}
+}
