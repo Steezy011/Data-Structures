@@ -15,6 +15,8 @@ void main(){
 		scanf("%d", &op);
 		switch(op){
 			case 1: enq(item);
+			printf("Enter an element to insert: ");
+			scanf("%d", &item);
 			break;
 			case 2: dq();
 			break;
@@ -27,18 +29,14 @@ void main(){
 }
 
 void enq(int item){
-	if((rear+1)%SIZE == front)
-	printf("Queue Overflow\n");
-	
-	else if(front==-1 && rear==-1){
-		front = rear= 0;
-		printf("Enter an element to insert: ");
-		scanf("%d", &item);
+	if(front==-1 && rear==-1){
+		front = rear= 0;		
 		cq[rear] = item;
 	}
+	else if((rear+1)%SIZE == front)
+	printf("Queue Overflow\n");
+	
 	else{
-		printf("Enter an element to insert: ");
-		scanf("%d", &item);
 		rear = (rear+1)%SIZE;
 		cq[rear] = item;
 	}
@@ -58,13 +56,18 @@ void dq(){
 }
 
 void display(){
+	i = front;
 	if(front==-1 && rear==-1)
 	printf("Queue Underflow\n");
 	else{	
-		printf("The elements in stack are: ");
-		for(i=front; i<=rear; i++){
+		printf("The elements in Queue are: ");
+		while(i<=rear){
 			printf("%4d", cq[i]);
+			i = (i+1)%SIZE;
 		}
-		printf("\n");
+		
+//		for(i=front; i!=rear; i=(i+1)%SIZE)
+//			printf("%4d", cq[i]);
+	printf("\n");
 	}
 }
