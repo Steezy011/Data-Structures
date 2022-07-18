@@ -34,7 +34,7 @@ void main(){
 
 void push(int item){
 	if(top >= SIZE){
-		printf("\nStack Overflow");
+		printf("\nStack Overflow\n");
 	}
 	else{
 		printf("\nEnter an element to push: ");
@@ -46,7 +46,7 @@ void push(int item){
 
 void pop(){
     if(top == -1)
-	printf("\nStack Underflow");
+	printf("\nStack Underflow\n");
 	else{
 		temp = stack[top];
 		printf("The deleted item is %d\n", stack[top]);
@@ -56,7 +56,7 @@ void pop(){
 
 void display(){
 	if(top == -1)
-	printf("\nStack Underflow");
+	printf("\nStack Underflow\n");
 	else{
 		printf("Elements in stack are: ");
 		for(i=0; i<=top; i++)
@@ -67,7 +67,7 @@ void display(){
 
 int isfull(){
 	if(top >= SIZE){
-		printf("\nStack Overflow");
+		printf("\nStack Overflow\n");
 	}
 	else{
 		return 1;
@@ -76,7 +76,7 @@ int isfull(){
 
 int isempty(){
 	if(top == -1)
-	printf("\nStack Underflow");
+	printf("\nStack Underflow\n");
 	else{
 		return 1;
 	}
