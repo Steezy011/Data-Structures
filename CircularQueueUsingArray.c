@@ -14,9 +14,10 @@ void main(){
 		printf("Choose any option: ");
 		scanf("%d", &op);
 		switch(op){
-			case 1: enq(item);
+			case 1: 
 			printf("Enter an element to insert: ");
 			scanf("%d", &item);
+			enq(item);
 			break;
 			case 2: dq();
 			break;
