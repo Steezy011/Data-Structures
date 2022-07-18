@@ -1,61 +1,64 @@
-#include<stdio.h>  
-#include<stdlib.h>  
-#define size 5
-void  enqueue();
-void  dequeue();
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 5
+
+void enq(int);
+void dq();
 void display();
-int queue[size], front = 0, rear = 0, i, ele;
+
+int q[SIZE], front=-1, rear=-1, i , item, op, temp;
 
 void main(){
-
-	int ch;
 	while(1){
-		printf("\n1.Insert\n 2.Delete\n 3.Display\n 4.Quit\n");
-		printf("Enter your choice : ");
-		scanf("%d",&ch);
-		switch(ch){
-			case 1 :enqueue();
-				break;
-			case 2 :dequeue();
-				break;
-			case 3:	display();
-				break;
-			case 4:	exit(0);
-			default:printf("Wrong choice\n");
-		}//switch
-	}//while
-}//main
-
-void enqueue() {
-	if(rear == size)
-		printf("*** queue is full ***\n");
-	else  {
-		printf("enter item into queue:");
-		scanf("%d",&ele);
-		queue[rear] = ele;
-		rear++;
-	}//else
-}//insertion
-
-
-void dequeue(){
-	if(front == rear)
-		printf("Queue Underflow\n");
-	else {
-		printf("deleted item is %d", queue[front]);
-		for(i=0; i<rear-1; i++)
-			queue[i] = queue[i+1];
-		rear--;
-	}
-}
-void display(){
-	if(front == rear)
-		printf("Queue Underflow\n");
-	else{
-		printf("The elements in queue are: ");
-		for(i=0; i<rear; i++){
-			printf("%4d", queue[i]);
+		printf("1.Insertion\n 2.Deletion \n 3.Display\n");
+		printf("Choose any option: ");
+		scanf("%d", &op);
+		switch(op){
+			case 1: enq(item);
+			break;
+			case 2: dq();
+			break;
+			case 3: display();
+			break;
+			case 4: exit(0);
+			default: printf("Wrong Choice\n");
 		}
 	}
 }
 
+void enq(int item){
+	if(rear>=SIZE){
+		printf("\nQueue Overflow\n");
+	}
+	else{
+		printf("Enter an element to push: ");
+		scanf("%d", &item);
+		rear++;
+		q[rear] = item;
+		if(front==-1){
+			front++;
+		}
+	}
+}
+
+void dq(){
+	if((front==-1)|| (front>rear))
+	printf("\nQueue Underflow\n");
+	else{
+		temp = q[front];
+		printf("The deleted item is %d\n", temp);
+		front++;
+	}
+}
+
+void display(){
+	if((front==-1)|| (front>rear))
+	printf("\nQueue Underflow\n");
+	else{
+		printf("elements in Queue are :");
+		for(i=front; i<=rear; i++){
+			printf("%4d", q[i]);
+		}
+		printf("\n");
+	}
+}
