@@ -16,7 +16,7 @@ void main(){
 	header = NULL;
 	ptr = header;
 	while(1){
-		printf("\n1.Insertion\n2.Deletion\n4.Traverse");
+		printf("\n1.Insertion\n2.Deletion\n3.Traverse");
 		printf("\nEnter your choice:");
 		scanf("%d", &ch);
 		switch(ch){
