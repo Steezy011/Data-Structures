@@ -1,69 +1,73 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void enqueue(int);
-void dequeue();
-void peek();
-void display();
-
-struct node {
+struct node{
 	int data;
 	struct node *link;
-};
+}*front, *rear, *new, *ptr;
 
-struct node *front = 0, *rear = 0, *neu, *temp;
-int ele, item;
+void enq();
+void dq();
+void display();
+
+int item, ch;
 
 void main(){
+	front = NULL;
+	rear = NULL;
 	while(1){
-		printf("1.Push\n2.Pop\n3.Display\n4.Exit\n");
-		printf("Enter your choice: ");
-		scanf("%d", &ele);
-		
-		switch(ele){
-			case 1:enqueue(item);
-				break;
-			case 2:dequeue();
-				break;
+		printf("\n1.Insertion\n2.Deletion\n3.display\n4.Exit");
+		printf("\nEnter your choice:");
+		scanf("%d", &ch);
+		switch(ch){
+			case 1:enq();
+			break;
+			case 2:dq();
+			break;
 			case 3:display();
-				break;
+			break;
 			case 4:exit(0);
-			default: printf("Wrong Choice\n");
+			default:printf("\n Wrong choice\n");
 		}
 	}
 }
 
-void enqueue(int item){
-	neu = (struct node*)malloc(sizeof(struct node));
-	printf("Enter element you want to Insert: ");
+void enq(){
+	new = malloc(sizeof(struct node));
+	printf("Enter the element you want to insert: \n");
 	scanf("%d", &item);
-	neu->data = item;
-	neu->link = NULL;
-	if(front == NULL && rear == NULL)
-		front = rear = neu;
+	new->data = item;
+	new->link = NULL;
+	if(front == NULL && rear == NULL){
+		front = rear = new;
+	}
 	else{
-		rear->link = neu;
-		rear = neu;
+		rear->link = new;
+		rear = new;
 	}
 }
 
-void dequeue(){
-	temp = front;
-    if(front == NULL)
+void dq(){
+	if(front == NULL && rear == NULL){
 		printf("Queue is empty\n");
-	else{
-		printf("The popped element is %d\n", front->data);
+	}
+	else{	
+		ptr = front;
+		printf("The deleted item from queue is %d", ptr->data);
 		front = front->link;
-		free(temp);
+		free(ptr);
 	}
 }
 
 void display(){
-    if(front == NULL)
+	if(front == NULL && rear == NULL){
 		printf("Queue is empty\n");
-	else{
-		for(temp=front; temp!=NULL; temp=temp->link)
-			printf("%4d", temp->data);
 	}
-	printf("\n");
+	else{
+		ptr = front;
+		while(ptr != NULL){
+			printf("%4d", ptr->data);
+			ptr = ptr->link;
+		}
+	}
 }
