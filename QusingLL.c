@@ -17,7 +17,7 @@ void main(){
 	rear = NULL;
 	while(1){
 		printf("\n1.Insertion\n2.Deletion\n3.display\n4.Exit");
-		printf("\nEnter your choice:");
+		printf("\nEnter your ch:");
 		scanf("%d", &ch);
 		switch(ch){
 			case 1:enq();
@@ -27,7 +27,7 @@ void main(){
 			case 3:display();
 			break;
 			case 4:exit(0);
-			default:printf("\n Wrong choice\n");
+			default:printf("\n Wrong ch\n");
 		}
 	}
 }
@@ -50,6 +50,9 @@ void enq(){
 void dq(){
 	if(front == NULL && rear == NULL){
 		printf("Queue is empty\n");
+	}
+	else if(front == rear){
+		printf("The deleted item from queue is %d\n", front->data);
 	}
 	else{	
 		ptr = front;
