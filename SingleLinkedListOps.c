@@ -32,7 +32,7 @@ void main(){
 	}
 }
 void insertion(){
-//	ptr = header;
+	ptr = header;
 	new = malloc(sizeof(struct node));
 	printf("\nEnter the item to insert\n");
 	scanf("%d", &item);
@@ -50,7 +50,6 @@ void insertion(){
 			header = new;
 		}//if
 		if(ch==2){
-			ptr = header;
 			printf("Enter the position to place an item:");
 			scanf("%d", &pos);
 			for(i=1; i<pos-1; i++)
@@ -59,7 +58,6 @@ void insertion(){
 			ptr->link=new;
 		}
 		if(ch==3){
-			ptr = header;
 			while(ptr->link!=NULL)
 			ptr=ptr->link;
 			new->link=NULL;
