@@ -44,7 +44,5 @@ void push(int n){
 }
 
 int pop(){
-	res = stack[top];
-	top--;
-	return res;
+	return stack[top--];
 }
