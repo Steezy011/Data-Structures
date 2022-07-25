@@ -13,10 +13,13 @@ int stack[SIZE], top=-1, item, op, temp, i;
 void main(){
 	while(1){
 		printf("1.Insertion\n 2.Deletion \n 3.Display \n 4.IsFull \n 5.IsEmpty \n");
-		printf("Choose any option: ");
+		printf("Choose any element: ");
 		scanf("%d", &op);
 		switch(op){
-			case 1: push(item);
+			case 1: 
+			printf("\nEnter an element to push: ");
+			scanf("%d", &item);
+			push(item);
 			break;
 			case 2: pop();
 			break;
@@ -33,12 +36,10 @@ void main(){
 }
 
 void push(int item){
-	if(top >= SIZE){
-		printf("\nStack Overflow\n");
+	if(top == SIZE-1){
+		printf("Stack Overflow\n");
 	}
 	else{
-		printf("\nEnter an element to push: ");
-		scanf("%d", &item);
 		top++;
 		stack[top] = item;
 	}
@@ -46,7 +47,7 @@ void push(int item){
 
 void pop(){
     if(top == -1)
-	printf("\nStack Underflow\n");
+	printf("Stack Underflow\n");
 	else{
 		temp = stack[top];
 		printf("The deleted item is %d\n", stack[top]);
@@ -56,7 +57,7 @@ void pop(){
 
 void display(){
 	if(top == -1)
-	printf("\nStack Underflow\n");
+	printf("Stack Underflow\n");
 	else{
 		printf("Elements in stack are: ");
 		for(i=0; i<=top; i++)
@@ -66,8 +67,8 @@ void display(){
 }
 
 int isfull(){
-	if(top >= SIZE){
-		printf("\nStack Overflow\n");
+	if(top == SIZE-1){
+		printf("Stack Overflow\n");
 	}
 	else{
 		return 1;
@@ -76,7 +77,7 @@ int isfull(){
 
 int isempty(){
 	if(top == -1)
-	printf("\nStack Underflow\n");
+	printf("Stack Underflow\n");
 	else{
 		return 1;
 	}
