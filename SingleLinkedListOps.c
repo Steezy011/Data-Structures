@@ -3,7 +3,6 @@
 
 void insertion();
 void deletion();
-void search();
 void traverse();
 
 int ch,i,pos,item;
@@ -15,8 +14,9 @@ struct node {
 
 void main(){
 	header = NULL;
+	ptr = header;
 	while(1){
-		printf("\n1.Insertion\n2.Deletion\n3.Search\n4.Traverse");
+		printf("\n1.Insertion\n2.Deletion\n4.Traverse");
 		printf("\nEnter your choice:");
 		scanf("%d", &ch);
 		switch(ch){
@@ -24,24 +24,21 @@ void main(){
 			break;
 			case 2:deletion();
 			break;
-			case 3:search();
+			case 3:traverse();
 			break;
-			case 4:traverse();
-			break;
-			case 5:exit(0);
+			case 4:exit(0);
 			default:printf("\n Wrong choice\n");
 		}
 	}
 }
 void insertion(){
-	ptr = header;
+//	ptr = header;
 	new = malloc(sizeof(struct node));
 	printf("\nEnter the item to insert\n");
 	scanf("%d", &item);
 	new->data = item;
 	if(header == NULL){
 		new->link = NULL;
-		header = NULL;
 		header = new;
 	}//if
 	else{
@@ -53,7 +50,8 @@ void insertion(){
 			header = new;
 		}//if
 		if(ch==2){
-			printf("Enter the position to place abn item:");
+			ptr = header;
+			printf("Enter the position to place an item:");
 			scanf("%d", &pos);
 			for(i=1; i<pos-1; i++)
 			ptr=ptr->link;
@@ -61,6 +59,7 @@ void insertion(){
 			ptr->link=new;
 		}
 		if(ch==3){
+			ptr = header;
 			while(ptr->link!=NULL)
 			ptr=ptr->link;
 			new->link=NULL;
@@ -73,24 +72,20 @@ void deletion(){
 	if(header == NULL){
 		printf("\n The list is empty");
 	}
-	else if(ptr->link==NULL){
-		printf("Deleted Item is %d", ptr->data);
-		header = NULL;
-		free(ptr);
-	}
+	
 	else{
 		printf("1.Start\n 2.Middle\n 3.End\n");
 		printf("\n Enter the place to delete the element from list");
 		scanf("%d", &ch);
 		if(ch==1){
 			printf("\nThe deleted item from the list is %d:", ptr->data);
-			header = header->link;
+			header = ptr->link;
 			free(ptr);
 		}
 		if(ch==2){
 			printf("\n Enter the position to delete the element from list");
 			scanf("%d", &pos);
-			for(i=1; i<pos; i++)
+			for(i=0; i<pos; i++)
 			ptr1=ptr;
 			ptr=ptr->link;
 		}
@@ -108,23 +103,6 @@ void deletion(){
 		}
 	}//else
 }//deletion
-void search(){
-	int loc = 0, f=0;
-	printf("\n Enter the element to be searched in the list");
-	scanf("%d", &item);
-	for(ptr=header; ptr!= NULL; ptr=ptr->link){
-		loc++;
-		if(ptr->data==item){
-			f=1;
-//			break;
-		}
-		if(f==0)
-		printf("\n Element not found");
-		else
-		printf("\n The element found at location %d", loc);
-	
-	}//for
-}//search
 
 void traverse(){
 	if(header==NULL)
@@ -132,6 +110,6 @@ void traverse(){
 	else{
 		printf("\nThe element in the list are:");
 		for(ptr=header;ptr!=NULL;ptr=ptr->link)
-		printf("%d",ptr->data);
+		printf("%4d",ptr->data);
 	}
 }//traverse
