@@ -8,7 +8,7 @@ void display();
 
 int cq[SIZE], front=-1, rear=-1,  item, op;
 
-void main(){
+int main(){
 	while(1){
 		printf("1.Insertion\n 2.Deletion \n 3.Display\n 4.Exit\n");
 		printf("Choose any option: ");
